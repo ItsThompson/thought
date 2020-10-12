@@ -13,14 +13,14 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 
-app.get('*', (req, res) => {
-    res.json({message: "Welcome to thought application."})
-});
-
 require('./src/app/routes/thought.routes')(app);
 const port = process.env.PORT || 3000;
 app.listen(port, () =>{
     console.log(`Running on http://localhost:${port}`);
+});
+
+app.get('*', (req, res) => {
+    res.json({message: "Welcome to thought application."})
 });
 
 // Connect to db
