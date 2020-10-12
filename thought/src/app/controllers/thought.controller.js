@@ -47,8 +47,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Thought with an id
 exports.findOne = (req, res) => {
-    const id = req.params;
-    console.log("here" + id)
+    const id = req.params.id;
 
     Thought.findById(id)
         .then(data => {
