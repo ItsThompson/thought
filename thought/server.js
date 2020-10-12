@@ -1,29 +1,39 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const http = require('http');
-const app = express();
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-// API file for interacting with MongoDB
-const api = require('./server/api');
+const app = express();
+var corsOptions = {
+    origin: `http://localhost:8080`,
+};
+
+app.use(cors(corsOptions));
 
 // Parsers
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// Angular DIST output folder
-app.use(express.static(path.join(__dirname, 'dist')));
-
-// API location
-app.use('/api', api);
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname,'dist/index.html'));
+require("./src/app/routes/thought.routes")(app);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Running on http://localhost:${port}`);
 });
 
-const port = process.env.PORT || '3000';
-app.set('port', port);
+app.get("*", (req, res) => {
+    res.json({ message: "Welcome to thought application." });
+});
 
-const server = http.createServer(app);
-
-server.listen(port, () => console.log(`Running on localhost:${port}`));
+// Connect to db
+const db = require("./src/app/models");
+db.mongoose
+    .connect(db.url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log("Connected to the database!");
+    })
+    .catch((err) => {
+        console.log("Cannot connect to the database!", err);
+        process.exit();
+    });
