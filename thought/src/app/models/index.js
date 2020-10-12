@@ -7,6 +7,4 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.thoughts = require("./thought.model.js")(mongoose);
-
-console.log(db);
 module.exports = db;

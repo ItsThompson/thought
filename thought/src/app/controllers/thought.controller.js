@@ -13,7 +13,7 @@ exports.create = (req, res) => {
         user: req.body.user,
         title: req.body.title,
         description: req.body.description
-    })
+    });
 
     thought
         .save(thought)
@@ -24,14 +24,14 @@ exports.create = (req, res) => {
             res.status(500).send({
                 message:
                     err.message || 'Some error occured while creating your thought.'
-            })
-        })
+            });
+        });
 };
 
 // Retrieve all Thoughts from the database.
 exports.findAll = (req, res) => {
     const title = req.query.title;
-    var condition = title ? {title: {$regex: new RegExp(title), $options: 'i'}}: {};
+    var condition = title ? { title: {$regex: new RegExp(title), $options: "i"}}: {};
 
     Thought.find(condition)
         .then(data => {
@@ -40,17 +40,18 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || 'Some error occured while finding thoughts.'
+                    err.message || 'Some error occurred while finding thoughts.'
             })
         })
 };
 
 // Find a single Thought with an id
 exports.findOne = (req, res) => {
-    const id = req.params.id;
+    const id = req.params;
+    console.log("here" + id)
 
     Thought.findById(id)
-        .then(data =>{
+        .then(data => {
             if (!data){
                 res.status(404).send({
                     message: 'Thought with id not found, id: ' + id
