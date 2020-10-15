@@ -1,7 +1,7 @@
 module.exports = app => {
     const thoughts = require('../controllers/thought.controller');
     
-    var router = require('express').Router();
+    let router = require('express').Router();
 
     router.get('/', thoughts.findAll);
 
