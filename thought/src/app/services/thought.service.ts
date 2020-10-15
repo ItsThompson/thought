@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseURL = 'http://localhost:8080/api/thoughts';
+const baseURL = 'http://localhost:3000/api/thoughts';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +16,19 @@ export class ThoughtService {
   }
 
   get(id): Observable<any> {
-    return this.http.get(`${baseURL}/${id}`);
+    return this.http.get(`${baseURL}/${id}`)
   }
 
   create(data): Observable<any> {
-    return this.http.post(baseURL, data);
+	let myHeaders: HttpHeaders = new HttpHeaders({
+		"access-control-allow-origin": "*"
+	})
+
+	console.log(myHeaders);
+
+	return this.http.post(baseURL, data, {
+		headers: myHeaders
+	});
   }
   
   delete(id): Observable<any> {

@@ -24,8 +24,6 @@ export class AddThoughtComponent{
             description: this.thought.description
         };
 
-        console.log(data)
-
         this.thoughtService.create(data)
             .subscribe(
                 response => {
@@ -38,6 +36,7 @@ export class AddThoughtComponent{
     }
 
     newThought(): void {
+        console.log("DEBUG");
         this.submitted = false;
         this.thought = {
             user: '',

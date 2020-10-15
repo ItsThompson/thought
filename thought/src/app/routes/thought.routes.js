@@ -1,15 +1,17 @@
+const cors = require("cors");
+
 module.exports = app => {
     const thoughts = require('../controllers/thought.controller');
     
     let router = require('express').Router();
 
-    router.get('/', thoughts.findAll);
+    router.get('/', cors(), thoughts.findAll);
 
-    router.post('/', thoughts.create); 
+    router.post('/', cors(), thoughts.create); 
 
-    router.get('/:id', thoughts.findOne);
+    router.get('/:id', cors(), thoughts.findOne);
     
-    router.delete('/:id', thoughts.delete);
+    router.delete('/:id', cors(), thoughts.delete);
 
-    app.use('/api/thoughts', router);
+    app.use('/api/thoughts', cors(), router);
 };
