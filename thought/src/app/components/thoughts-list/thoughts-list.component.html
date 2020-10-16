@@ -13,7 +13,7 @@
 <div class="col-md-12">
     <infinite-scroll style="height: 600px; overflow-y: auto">
         <ul class="list-group">
-            <div *ngFor="let thought of thoughts; let i = index">
+            <div *ngFor="let thought of thoughts.slice().reverse(); let i = index">
                     <div *ngIf="i<5">
                         <li class="list-group-item">
                             <label><strong>User:</strong></label> {{ thought.user }}
