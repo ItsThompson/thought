@@ -11,22 +11,24 @@
     </div>
 </div>
 <div class="col-md-12">
-    <ul class="list-group">
-        <div *ngFor="let thought of thoughts; let i = index">
-                <div *ngIf="i<5">
-                    <li class="list-group-item">
-                        <label><strong>User:</strong></label> {{ thought.user }}
-                    </li>
-                    <li class="list-group-item">
-                        <label><strong>Title:</strong></label> {{ thought.title }}
-                    </li>
-                    <li class="list-group-item">
-                        <label><strong>Description</strong></label> {{ thought.description }}
-                    </li>
-                    <br>
-                </div>
-        </div>
-    </ul>
+    <infinite-scroll style="height: 600px; overflow-y: auto">
+        <ul class="list-group">
+            <div *ngFor="let thought of thoughts; let i = index">
+                    <div *ngIf="i<5">
+                        <li class="list-group-item">
+                            <label><strong>User:</strong></label> {{ thought.user }}
+                        </li>
+                        <li class="list-group-item">
+                            <label><strong>Title:</strong></label> {{ thought.title }}
+                        </li>
+                        <li class="list-group-item">
+                            <label><strong>Description</strong></label> {{ thought.description }}
+                        </li>
+                        <br>
+                    </div>
+            </div>
+    		</ul>
+    </infinite-scroll>
 </div>
 <!-- <div class="col-md-6">
     <div *ngIf="currentThought">
