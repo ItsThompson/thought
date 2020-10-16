@@ -35,7 +35,7 @@ export class ThoughtService {
     return this.http.delete(`${baseURL}/${id}`);
   }
 
-  findByUser(user): Observable<any> {
-    return this.http.get(`${baseURL}?user=${user}`);
+  findByTitle(title): Observable<any> {
+    return this.http.get(`${baseURL}?title=${title}`);
   }
 }
