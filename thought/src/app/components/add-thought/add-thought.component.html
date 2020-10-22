@@ -21,8 +21,9 @@
         </div>
 
         <div *ngIf="submitted">
-            <h4>You submitted successfully!</h4>
+            <h4 style="padding: 2rem;">You submitted successfully!</h4>
             <button class="btn btn-success" (click)="newThought()">Add</button>
+            <button class="btn btn-success" routerLink="" style="float: right;">Return To Main Page</button>
         </div>
     </div>
 </div>
