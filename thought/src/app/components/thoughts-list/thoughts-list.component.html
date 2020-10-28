@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="col-md-12">
-    <infinite-scroll style="height: 600px; overflow-y: auto">
+    <!-- <infinite-scroll style="height: 600px; overflow-y: auto">
         <ul class="list-group">
             <div *ngFor="let thought of thoughts.slice().reverse(); let i = index">
                     <div *ngIf="i<5">
@@ -27,10 +27,24 @@
                         <br>
                     </div>
             </div>
-    		</ul>
-    </infinite-scroll>
+        </ul>
+    </infinite-scroll> -->
+    <ul class="list-group">
+        <div *ngFor="let thought of thoughts; let i = index">
+            <li class="list-group-item">
+                <label><strong>User:</strong></label> {{ thought.user }}
+            </li>
+            <li class="list-group-item">
+                <label><strong>Title:</strong></label> {{ thought.title }}
+            </li>
+            <li class="list-group-item">
+                <label><strong>Description</strong></label> {{ thought.description }}
+            </li>
+            <br>
+        </div>
+    </ul>
 </div>
-<!-- <div class="col-md-6">
+<div class="col-md-6">
     <div *ngIf="currentThought">
       <h4>Thought</h4>
     <div>
@@ -49,4 +63,4 @@
             <p>Please click on a Thought...</p>
         </div>
     </div>
-</div> -->
+</div>

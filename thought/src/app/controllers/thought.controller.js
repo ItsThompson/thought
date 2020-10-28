@@ -34,6 +34,8 @@ exports.findAll = (req, res) => {
     let condition = title ? { title: {$regex: new RegExp(title), $options: "i"}}: {};
 
     Thought.find(condition)
+        .sort({date: -1}) //Sorts by date
+        .limit(5) //Limits to 20 item
         .then(data => {
             res.send(data);
         })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThoughtService } from 'src/app/services/thought.service';
-import { InfiniteScrollComponent } from '../infinite-scroll/infinite-scroll.component';
+
 @Component({
     selector: 'app-thoughts-list',
     templateUrl: './thoughts-list.component.html',
