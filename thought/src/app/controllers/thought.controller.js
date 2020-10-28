@@ -35,7 +35,7 @@ exports.findAll = (req, res) => {
 
     Thought.find(condition)
         .sort({date: -1}) //Sorts by date
-        .limit(5) //Limits to 20 item
+        .limit(20) //Limits to 20 item
         .then(data => {
             res.send(data);
         })
