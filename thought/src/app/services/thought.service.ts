@@ -5,37 +5,34 @@ import { Observable } from 'rxjs';
 const baseURL = 'http://localhost:3000/api/thoughts';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ThoughtService {
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+    getLimit(count): Observable<any> {
+        return this.http.get(`${baseURL}/${count}`);
+    }
 
-  getAll(): Observable<any> {
-    return this.http.get(baseURL);
-  }
+    get(id): Observable<any> {
+        return this.http.get(`${baseURL}/${id}`);
+    }
 
-  get(id): Observable<any> {
-    return this.http.get(`${baseURL}/${id}`)
-  }
+    create(data): Observable<any> {
+        let myHeaders: HttpHeaders = new HttpHeaders({
+            'access-control-allow-origin': '*',
+        });
 
-  create(data): Observable<any> {
-	let myHeaders: HttpHeaders = new HttpHeaders({
-		"access-control-allow-origin": "*"
-	})
+        return this.http.post(baseURL, data, {
+            headers: myHeaders,
+        });
+    }
 
-	console.log(myHeaders);
+    delete(id): Observable<any> {
+        return this.http.delete(`${baseURL}/${id}`);
+    }
 
-	return this.http.post(baseURL, data, {
-		headers: myHeaders
-	});
-  }
-  
-  delete(id): Observable<any> {
-    return this.http.delete(`${baseURL}/${id}`);
-  }
-
-  findByTitle(title): Observable<any> {
-    return this.http.get(`${baseURL}?title=${title}`);
-  }
+    findByTitle(title, count): Observable<any> {
+        return this.http.get(`${baseURL}/${count}?title=${title}`);
+    }
 }

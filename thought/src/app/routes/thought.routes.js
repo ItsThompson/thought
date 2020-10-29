@@ -5,7 +5,7 @@ module.exports = app => {
     
     let router = require('express').Router();
 
-    router.get('/', cors(), thoughts.findAll);
+    router.get('/:count', cors(), thoughts.findLimit);
 
     router.post('/', cors(), thoughts.create); 
 

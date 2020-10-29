@@ -29,12 +29,14 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Thoughts from the database.
-exports.findAll = (req, res) => {
+exports.findLimit = (req, res) => {
     const title = req.query.title;
+    const count = parseInt(req.params.count);
     let condition = title ? { title: {$regex: new RegExp(title), $options: "i"}}: {};
 
     Thought.find(condition)
-        .sort({date: -1}) //Sorts by date
+        .sort({'createdAt': -1}) //Sorts by date
+        .skip(count)
         .limit(20) //Limits to 20 item
         .then(data => {
             res.send(data);
@@ -45,6 +47,7 @@ exports.findAll = (req, res) => {
                     err.message || 'Some error occurred while finding thoughts.'
             })
         })
+
 };
 
 // Find a single Thought with an id

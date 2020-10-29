@@ -1,66 +1,42 @@
 <div class="list row">
   <div class="col-md-12">
-    <h4>Thoughts</h4>
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search by title" [(ngModel)]="title" />
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">
-          Search
-        </button>
-      </div>
+    <h4 style="text-align: center;">Thoughts</h4>
     </div>
 </div>
 <div class="col-md-12">
-    <!-- <infinite-scroll style="height: 600px; overflow-y: auto">
+    <div
+        class="search-results"
+        infiniteScroll
+        [infiniteScrollDistance]="5"
+        [infiniteScrollThrottle]="50"
+        (scrolled)="OnScroll()"
+    >
         <ul class="list-group">
-            <div *ngFor="let thought of thoughts.slice().reverse(); let i = index">
-                    <div *ngIf="i<5">
-                        <li class="list-group-item">
-                            <label><strong>User:</strong></label> {{ thought.user }}
-                        </li>
-                        <li class="list-group-item">
-                            <label><strong>Title:</strong></label> {{ thought.title }}
-                        </li>
-                        <li class="list-group-item">
-                            <label><strong>Description</strong></label> {{ thought.description }}
-                        </li>
-                        <br>
-                    </div>
+            <div *ngFor="let thought of thoughts; let i = index">
+                <li class="list-group-item">
+                    <label><strong>User:</strong></label> {{ thought.user }}
+                </li>
+                <li class="list-group-item">
+                    <label><strong>Title:</strong></label> {{ thought.title }}
+                </li>
+                <li class="list-group-item">
+                    <label><strong>Description</strong></label> {{ thought.description }}
+                </li>
+                <br>
             </div>
         </ul>
-    </infinite-scroll> -->
-    <ul class="list-group">
-        <div *ngFor="let thought of thoughts; let i = index">
-            <li class="list-group-item">
-                <label><strong>User:</strong></label> {{ thought.user }}
-            </li>
-            <li class="list-group-item">
-                <label><strong>Title:</strong></label> {{ thought.title }}
-            </li>
-            <li class="list-group-item">
-                <label><strong>Description</strong></label> {{ thought.description }}
-            </li>
-            <br>
-        </div>
-    </ul>
+    </div>
 </div>
-<div class="col-md-6">
-    <div *ngIf="currentThought">
-      <h4>Thought</h4>
-    <div>
-        <label><strong>Title:</strong></label> {{ currentThought.title }}
-    </div>
-        <div>
-            <label><strong>Description:</strong></label>
-                {{ currentThought.description }}
-        </div>
-    <div>
-        <label><strong>User:</strong></label>
-            {{ currentThought.user }}
-    </div>
-        <div *ngIf="!currentThought">
-            <br />
-            <p>Please click on a Thought...</p>
-        </div>
+<div class="row pb-5">
+    <div class="col-md-12 p-5">
+        <ngx-spinner
+            bdOpacity = 0.9
+            bdColor = ""
+            size = "medium"
+            color = "gray"
+            type = "ball-scale-multiple"
+            [fullScreen] = "false"
+        >
+        </ngx-spinner>
     </div>
 </div>
