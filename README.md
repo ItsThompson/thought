@@ -1,2 +1,2 @@
 # thought
-A MEAN stack social media for people to share their thoughts.
+A MEAN stack for people to share their thoughts.
